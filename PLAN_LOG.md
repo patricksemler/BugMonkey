@@ -103,3 +103,14 @@ Append-only work log. Never delete old entries.
 - Remote migrations: not applied. `supabase login`, `supabase link`, and `supabase db push` were intentionally not run.
 - Result: safe Supabase local configuration docs and placeholder env examples were added without product behavior changes.
 - Secrets check: only placeholder env values were added; no real Supabase values should be committed.
+
+## 2026-05-28 - Local Supabase project link
+
+- Branch: `chore/configure-supabase-project`.
+- Task attempted: link the local Supabase CLI workspace to the real BugMonkey Supabase project without applying migrations or committing secrets.
+- Files changed: `.gitignore`.
+- Commands run: `pnpm dlx supabase projects list --output json`, `pnpm dlx supabase link --project-ref <redacted>`, `pnpm dlx supabase migration list`, `git diff --check`.
+- Tests/checks performed: Supabase CLI linked successfully; migration list completed as a read-only verification; `git diff --check` passed.
+- Remote migrations: not applied. `supabase db push` and `supabase db reset` were intentionally not run.
+- Result: local Supabase CLI metadata was created under `supabase/.temp/`, and `.gitignore` now excludes that local link metadata.
+- Secrets check: no project password, Supabase keys, database URL, or project-specific link metadata should be committed.
