@@ -6,7 +6,7 @@ BugMonkey is an AI-assisted pre-launch QA scanner for solo developers, students,
 
 ## Status
 
-This repository has the foundation setup plus a polished static Next.js web UI shell in `apps/web`. Backend, database, auth, scanner, storage, and LLM work are not implemented yet.
+This repository has the foundation setup, a polished static Next.js web UI shell in `apps/web`, and the first Supabase/Postgres shared schema foundation. Auth UI, scanner execution, storage uploads, and LLM work are not implemented yet.
 
 Demo link: TODO
 
@@ -28,6 +28,7 @@ Screenshots/GIFs: TODO
 apps/web       Next.js App Router dashboard deployed to Vercel
 apps/worker    Separate Node.js Playwright scanner worker
 packages/shared Shared schemas, constants, issue enums, and report types
+supabase/      Supabase/Postgres migrations for app data and RLS policies
 docs/          Specs, plans, decisions, logs, and architecture notes
 ```
 
@@ -40,8 +41,11 @@ docs/          Specs, plans, decisions, logs, and architecture notes
 - Radix UI primitives
 - lucide-react
 - Playwright
-- Postgres via Supabase or Neon, to be decided later
-- Object storage via Supabase Storage, Vercel Blob, or S3-compatible storage, to be decided later
+- Supabase Postgres
+- Supabase Auth
+- Supabase Storage for future private evidence assets
+- Drizzle ORM and Drizzle Kit
+- Zod shared validation contracts
 
 ## Local Setup
 
@@ -80,15 +84,31 @@ Current checks:
 pnpm lint
 pnpm typecheck
 pnpm test
+pnpm --filter @bugmonkey/web build
 ```
 
 `pnpm test` is still a placeholder until test coverage is added.
+
+Generate database migrations from the Drizzle schema:
+
+```bash
+pnpm db:generate
+```
+
+Optional local Supabase verification, when the Supabase CLI and Docker are available:
+
+```bash
+supabase start
+supabase db reset
+```
 
 ## Vercel Web Deployment
 
 Create the Vercel project with Root Directory set to `apps/web`. Let Vercel auto-detect the Next.js framework settings from that app directory.
 
 The Playwright worker/scanner is separate and is not implemented yet. Do not run browser scanning inside normal Vercel UI routes.
+
+The current web build does not require Supabase environment variables. Future authenticated database access should use Supabase Auth with cookie-based SSR helpers and RLS-backed tables.
 
 ## Environment
 
@@ -97,6 +117,8 @@ Copy `.env.example` to `.env.local` when implementation begins. Rule-based mode 
 ```bash
 REPORT_MODE=rule_based
 ```
+
+Optional Supabase placeholders are present for future milestones. Do not commit real project URLs, anon keys, service role keys, or database passwords.
 
 ## Planned Commands
 
@@ -116,3 +138,4 @@ See [PLAN.md](PLAN.md) and [docs/plans/000-roadmap.md](docs/plans/000-roadmap.md
 - Hosted scans must block localhost and private network targets unless explicitly running in local development mode.
 - Scans must validate URLs, respect crawl limits, and avoid destructive actions.
 - AI providers may only summarize and explain captured evidence. They must not invent bugs.
+- User-owned app data must be protected by Supabase RLS policies using `auth.uid()` ownership checks.

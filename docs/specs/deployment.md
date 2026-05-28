@@ -21,9 +21,13 @@ Deploy BugMonkey with a Vercel web app and a separate worker runtime.
 
 For the current static UI milestone, configure the Vercel project Root Directory as `apps/web` and rely on Vercel's Next.js framework detection. A root `vercel.json` is not required for the current monorepo shape.
 
+Milestone 003 adds Supabase and shared-schema foundations, but the web app remains static/mock-only. `pnpm --filter @bugmonkey/web build` must pass without Supabase environment variables.
+
 ## Worker
 
 `apps/worker` owns Playwright scanning and can run locally for the MVP once implemented. The worker/scanner is not implemented yet. Later deployment options include Render, Fly.io, Railway, Docker VPS, or similar.
+
+Do not run Playwright scanner execution in Supabase Edge Functions or normal Vercel UI routes.
 
 ## Constraint
 

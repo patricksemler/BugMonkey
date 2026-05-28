@@ -10,6 +10,8 @@ The report engine turns structured scan evidence into a launch-readiness report.
 - `mock`: deterministic provider for demos and tests.
 - `llm_enhanced`: optional evidence-bound enhancement mode.
 
+The selected report mode is stored per scan and should use the shared `reportModeSchema`.
+
 ## Rule-Based Requirements
 
 - Classify issues deterministically.
@@ -35,7 +37,14 @@ The report engine turns structured scan evidence into a launch-readiness report.
 - `MOBILE_HORIZONTAL_OVERFLOW`
 - `SLOW_PAGE_LOAD_WARNING`
 
+## Shared Contracts
+
+Report outputs should validate against `@bugmonkey/shared/contracts` before persistence:
+
+- `issueTypeSchema` and `issueSeveritySchema` define the stable rule issue vocabulary.
+- `issueEvidencePayloadSchema` keeps report claims grounded in captured scanner evidence.
+- `reportOutputPayloadSchema` stores generated report/export payloads in `report_outputs`.
+
 ## Next Step
 
-Create shared issue enums, severity enums, and report DTOs before implementing provider logic.
-
+Implement deterministic report generation against the shared contracts before adding optional provider logic.

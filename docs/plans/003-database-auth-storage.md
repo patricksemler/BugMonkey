@@ -1,28 +1,39 @@
-# 003 - Database, Auth, And Storage
+# 003 - Supabase Database And Shared Schema Foundation
 
 ## Goal
 
-Add the persistence layer for projects, scans, pages, issues, evidence assets, scan events, and report mode.
+Define the persistence layer and shared validation contracts for projects, scans, pages, issues, evidence assets, scan events, and report outputs.
 
-## Decisions Needed
+## Decisions
 
-- Supabase Auth or Auth.js.
-- Supabase Postgres or Neon Postgres.
-- Supabase Storage, Vercel Blob, or S3-compatible storage.
-- Prisma or Drizzle.
+- Use Supabase Postgres for persistent app data.
+- Use Supabase Auth as the future user identity source.
+- Use Supabase Storage later for private evidence assets and signed URLs.
+- Use Drizzle ORM and Drizzle Kit for TypeScript-first schema and SQL migration generation.
+- Use Zod in `packages/shared` for runtime validation across future web, worker, scanner, and report-engine code.
 
 ## Changes
 
-- Add schema for users, projects, scans, scanned pages, issues, evidence assets, scan events, and exports.
+- Do not add an app `users` table in this milestone. Reference `auth.users.id` from user-owned app tables.
+- Add schema for projects, scans, scanned pages, issues, evidence assets, scan events, and report outputs.
 - Store report mode per scan.
 - Store raw evidence before report summaries.
-- Add local setup and migration commands.
-- Add demo-mode data strategy without requiring real accounts.
+- Add local migration generation through Drizzle Kit without requiring a hosted Supabase connection.
+- Keep the current static web app buildable without Supabase environment variables.
+
+## Non-Goals
+
+- No Supabase Auth UI.
+- No database wiring in the current UI.
+- No scanner behavior.
+- No storage uploads.
+- No LLM calls.
 
 ## Verification
 
-- Migrations apply locally.
-- Basic project and scan records can be created and read.
-- Evidence assets have stable references.
-- README setup instructions are updated.
-
+- `pnpm db:generate`
+- `pnpm --filter @bugmonkey/shared typecheck`
+- `pnpm lint`
+- `pnpm typecheck`
+- `pnpm test`
+- `pnpm --filter @bugmonkey/web build`

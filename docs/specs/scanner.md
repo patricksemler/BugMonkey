@@ -30,11 +30,19 @@ The scanner visits a deployed web app URL with Playwright and captures structure
 - Mobile horizontal overflow.
 - Slow page load warning.
 
+## Shared Contracts
+
+Scanner inputs and outputs should validate against `@bugmonkey/shared/contracts` before persistence:
+
+- `scanConfigSchema` controls crawl limits, timeout, target URL, viewport selection, and screenshot capture preference.
+- `scanPageResultSchema` captures per-page status, timing, metadata, issue counts, and screenshot asset references.
+- `issueEvidencePayloadSchema` stores structured issue evidence while allowing rule-specific details.
+- `evidence_asset_type`, `viewport_type`, and `scan_event_type` enums keep worker output compatible with database persistence.
+
 ## Safety
 
 Hosted mode must block localhost and private network targets unless explicitly running in local development mode.
 
 ## Next Step
 
-Define shared scan config types in `packages/shared` before implementing the worker.
-
+Implement the worker against the shared contracts without placing scanner logic in `apps/web`.

@@ -19,6 +19,10 @@ BugMonkey scans untrusted URLs. Security and abuse prevention are core product r
 - Never commit API keys, tokens, private screenshots, or real user data.
 - Store evidence assets with controlled access.
 - Treat screenshots and logs as potentially sensitive.
+- Use Supabase Auth user IDs as app data owners without duplicating Auth users in public tables.
+- Enable Row Level Security on public app tables and scope user-owned data through `auth.uid()`.
+- Keep service role credentials server-only for future trusted worker or backend operations.
+- Use private Supabase Storage buckets, storage RLS, and signed URLs for future evidence access.
 
 ## AI Safety
 
@@ -27,5 +31,4 @@ BugMonkey scans untrusted URLs. Security and abuse prevention are core product r
 
 ## Next Step
 
-Formalize URL validation and hosted-mode network-blocking rules before worker implementation.
-
+Formalize URL validation and hosted-mode network-blocking rules before worker implementation. Auth UI and storage uploads remain outside Milestone 003.
