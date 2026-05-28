@@ -9,10 +9,12 @@ The format follows Keep a Changelog style sections and this project uses Convent
 ### Added
 
 - Repository foundation documentation and planning skeleton.
+- Static Next.js dashboard shell with mock-only overview, project, scan, settings, demo report, issue detail, and App Router fallback states.
+- Vercel web deployment notes for deploying `apps/web` as the project root.
 
 ### Changed
 
-- Nothing yet.
+- Milestone planning docs now close out the completed web UI shell and point to Milestone 003.
 
 ### Fixed
 
@@ -25,4 +27,3 @@ The format follows Keep a Changelog style sections and this project uses Convent
 ### Security
 
 - Nothing yet.
-

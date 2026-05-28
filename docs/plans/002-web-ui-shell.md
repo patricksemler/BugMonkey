@@ -1,30 +1,39 @@
 # 002 - Web UI Shell
 
-## Goal
+## Status
 
-Create the first real Next.js App Router web shell with a polished SaaS dashboard direction.
+Completed across 002a, 002b, and 002c.
 
-## Changes
+## Completion Summary
 
-- Initialize `apps/web` as a Next.js TypeScript app.
-- Add Tailwind CSS, shadcn/ui, Radix UI patterns, and lucide-react.
-- Add core layouts for landing, demo report, auth placeholder pages, projects list, project detail, new scan, scan report, issue detail, and settings.
-- Add shared UI primitives for buttons, cards, badges, tables, tabs, alerts, skeletons, dialogs, forms, and tooltips.
-- Include empty, loading, error, and responsive states for every route shell.
+- 002a initialized `apps/web` as a real Next.js App Router TypeScript app with Tailwind, local shadcn-style primitives, a static dashboard overview, and a static demo report.
+- 002b added real static dashboard routes for projects, scans, settings, and demo issue detail, plus active navigation and reusable empty/loading/error UI treatment.
+- 002c completed final static UI polish, added App Router `loading`, `error`, and `not-found` states, extracted shared metric cards, tightened mobile responsiveness, and documented Vercel web-app readiness.
 
-## Design Direction
+## Branches And PRs
 
-- Neutral background.
-- One restrained accent color.
-- Subtle borders.
-- Minimal shadows.
-- Compact tables.
-- Clear severity badges.
-- No flashy AI-demo styling.
+- `feature/static-dashboard-route-polish`
+- PR #1: `feat(web): add static dashboard route polish`
+- `feature/final-static-ui-vercel-readiness`
+
+## Final Result
+
+The static web dashboard is ready for backend/database integration. It now has polished mock-only route shells for overview, projects, scans, settings, demo report, issue detail, and unknown routes.
+
+## Remaining Non-Goals
+
+- No auth.
+- No database.
+- No worker.
+- No scanner.
+- No storage.
+- No shared contracts.
+- No LLM logic.
+- No real deployment or environment-variable requirements.
 
 ## Verification
 
 - Web app starts locally.
-- UI has no obvious layout overlap on desktop and mobile.
+- Static routes render mock-only content.
 - Placeholder pages do not claim unfinished functionality works.
-
+- Desktop and mobile layouts have no obvious overlap or clipped content.

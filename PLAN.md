@@ -2,71 +2,40 @@
 
 ## Current Goal
 
-Initialize the BugMonkey repository foundation with agent-friendly documentation, monorepo placeholders, basic tooling skeletons, and planning docs.
+Begin Milestone 003: database and shared schema foundation.
 
-## Scope
+## Completed Milestones
 
-- Root project docs.
-- `docs/plans/` milestone breakdown.
-- `docs/specs/` behavior spec skeletons.
-- `docs/decisions/` ADR skeletons.
-- Monorepo folder placeholders for `apps/web`, `apps/worker`, and `packages/shared`.
-- Basic package, workspace, environment, and editor config files.
+- [x] 001 - Repo foundation.
+- [x] 002a - Initial static Next.js UI shell.
+- [x] 002b - Static dashboard route polish.
+- [x] 002c - Final static UI polish and Vercel readiness.
+- [x] Overall Milestone 002 - Web UI shell.
 
-## Non-Goals
+## Next Active Milestone
 
-- No Next.js implementation.
-- No Playwright scanner implementation.
-- No database schema or migrations.
-- No auth setup.
-- No storage setup.
+Milestone 003 should establish the first backend-facing foundation without implementing scanner execution:
+
+- Choose the database/auth/storage direction needed for local development.
+- Define shared schema foundations in `packages/shared`.
+- Keep scanner logic out of `apps/web`.
+- Preserve rule-based reporting as the default.
+- Keep AI-enhanced behavior optional and unimplemented until the provider milestone.
+
+## Non-Goals For The Next Milestone
+
+- No Playwright worker implementation.
+- No production scanner runs.
 - No LLM provider implementation.
-- No production deployment config beyond documentation placeholders.
+- No destructive scan actions.
+- No real user data or secrets committed.
 
-## Active Checklist
-
-- [x] Initialize Git repository.
-- [x] Add root docs.
-- [x] Add monorepo and tooling placeholders.
-- [x] Add milestone plans.
-- [x] Add specs and ADR skeletons.
-- [x] Verify no secrets or feature implementation.
-- [x] Commit as `chore(repo): initialize project foundation`.
-
-## Target Files
-
-- `README.md`
-- `AGENTS.md`
-- `CLAUDE.md`
-- `PLAN.md`
-- `PLAN_LOG.md`
-- `CHANGELOG.md`
-- `CONTRIBUTING.md`
-- `docs/plans/`
-- `docs/specs/`
-- `docs/decisions/`
-- `apps/web/.gitkeep`
-- `apps/worker/.gitkeep`
-- `packages/shared/.gitkeep`
-
-## Verification Steps
+## Verification Baseline
 
 ```bash
-git status --short
-git diff --check
 pnpm lint
 pnpm typecheck
 pnpm test
 ```
 
-If `pnpm` is not installed locally, record that in `PLAN_LOG.md`.
-
-## Rollback Notes
-
-This foundation pass is docs and placeholders only. Roll back by reverting the initial foundation commit.
-
-## Open Questions
-
-- Choose Supabase Postgres or Neon Postgres.
-- Choose Supabase Storage, Vercel Blob, or S3-compatible storage.
-- Choose Auth.js or Supabase Auth.
+`pnpm test` remains a placeholder until test coverage is introduced.

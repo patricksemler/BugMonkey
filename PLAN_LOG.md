@@ -53,3 +53,18 @@ Append-only work log. Never delete old entries.
 - Result: static dashboard route polish completed with mock-only data and graceful known/unknown issue detail states. No auth, database, worker, scanner, storage, shared contracts, or LLM logic was added.
 - Known issues: no remote is currently configured, so branch push and PR creation may require user follow-up.
 - Next recommended step: commit `feat(web): add static dashboard route polish`, then push/open a PR if a remote is configured.
+
+## 2026-05-28 - Final static UI polish and Vercel readiness
+
+- Branch: `feature/final-static-ui-vercel-readiness`.
+- Task attempted: finish Milestone 002c closeout after completing final static UI polish.
+- Files changed: `apps/web` static UI state files and shared components, `apps/web/package.json`, `apps/web/tsconfig.json`, `README.md`, `docs/specs/deployment.md`, `docs/plans/002-web-ui-shell.md`, `PLAN.md`, `PLAN_LOG.md`, `CHANGELOG.md`.
+- Commands run: `git switch main`, `git pull --ff-only origin main`, `git switch -c feature/final-static-ui-vercel-readiness`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, `pnpm dev:web`, browser QA for `/`, `/projects`, `/scans`, `/settings`, `/demo-report`, `/demo-report/issues/BM-DEMO-001`, `/demo-report/issues/unknown`, and `/not-a-real-route`, mobile viewport QA for `/`, `/projects`, and `/not-a-real-route`, browser console checks, `git diff --check`, `lsof -ti tcp:3000 | xargs kill`, closeout documentation inspection commands.
+- Tests/checks performed: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, and `git diff --check` passed for the closeout.
+- Visual QA notes: desktop routes rendered static/mock-only content; mobile width `390x844` showed no obvious overlap, clipped controls, unreadable tables, or awkward button wrapping; known and unknown issue detail states worked; disabled scan/export/settings actions remained disabled; final browser console check on a valid route reported no errors. The `/not-a-real-route` request correctly returned a 404 while rendering the polished not-found UI.
+- Commit hashes available: `84e8423` (`feat(web): polish final static UI states`). Closeout commit pending.
+- PR URL: https://github.com/patricksemler/BugMonkey/pull/2
+- Vercel config: intentionally avoided `vercel.json`; current docs instruct Vercel to use project Root Directory `apps/web` and framework auto-detection. Worker/scanner remain separate and unimplemented.
+- Result: Milestone 002 docs are closed out and the static web UI is ready for Milestone 003 backend/database/shared-schema planning.
+- Known issues: `pnpm test` remains a placeholder until real test coverage is added.
+- Next recommended milestone: Milestone 003 - database/shared schema foundation.
