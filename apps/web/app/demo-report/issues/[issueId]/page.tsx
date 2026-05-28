@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, FileText } from "lucide-react";
 
 import { AppShell } from "@/components/app-shell";
+import { MetricCard } from "@/components/metric-card";
 import { SeverityBadge } from "@/components/severity-badge";
 import { StatusState } from "@/components/status-state";
 import { Badge } from "@/components/ui/badge";
@@ -48,6 +49,7 @@ export default async function DemoIssuePage({
               </Link>
             }
             body={`No static demo issue exists for "${issueId}".`}
+            density="page"
             title="Unknown issue"
             variant="error"
           />
@@ -75,28 +77,9 @@ export default async function DemoIssuePage({
         </Link>
 
         <section className="grid gap-4 md:grid-cols-3">
-          <Card>
-            <CardContent className="p-5">
-              <p className="text-sm text-muted-foreground">Issue ID</p>
-              <p className="mt-2 font-mono text-lg font-semibold">{issue.id}</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-5">
-              <p className="text-sm text-muted-foreground">Severity</p>
-              <div className="mt-2">
-                <SeverityBadge severity={issue.severity} />
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-5">
-              <p className="text-sm text-muted-foreground">Status</p>
-              <div className="mt-2">
-                <Badge tone={issue.status === "Open" ? "warning" : "neutral"}>{issue.status}</Badge>
-              </div>
-            </CardContent>
-          </Card>
+          <MetricCard label="Issue ID" value={issue.id} valueClassName="break-all font-mono text-lg" />
+          <MetricCard label="Severity" value={<SeverityBadge severity={issue.severity} />} />
+          <MetricCard label="Status" value={<Badge tone={issue.status === "Open" ? "warning" : "neutral"}>{issue.status}</Badge>} />
         </section>
 
         <Card>

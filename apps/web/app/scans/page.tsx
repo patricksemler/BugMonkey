@@ -33,7 +33,7 @@ export default function ScansPage() {
           <CardHeader>
             <CardTitle>Scan slots</CardTitle>
             <CardDescription>
-              Mock rows for future scan history without live scanner behavior.
+              Mock rows for future scan history without scanner behavior.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -74,8 +74,8 @@ export default function ScansPage() {
         </Card>
 
         <section className="grid gap-4 md:grid-cols-3">
-          <StatusState body="No production scan jobs exist in this static milestone." title="Empty scan history" variant="empty" />
-          <StatusState body="Future worker progress can use this loading treatment." title="Loading scan status" variant="loading" />
+          <StatusState body="No production scan jobs exist in this static milestone." density="page" title="Empty scan history" variant="empty" />
+          <StatusState body="Future worker progress can use this loading treatment." density="page" title="Loading scan status" variant="loading" />
           <StatusState
             action={
               <Link className="text-sm font-medium text-foreground hover:underline" href="/demo-report/issues/BM-DEMO-001">
@@ -83,6 +83,7 @@ export default function ScansPage() {
               </Link>
             }
             body="Future scan failures should stay evidence-bound and recoverable."
+            density="page"
             title="Error placeholder"
             variant="error"
           />

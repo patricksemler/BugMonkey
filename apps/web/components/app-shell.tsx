@@ -22,7 +22,7 @@ export function AppShell({
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col lg:flex-row">
-        <aside className="border-b border-border bg-white/80 px-4 py-4 lg:min-h-screen lg:w-64 lg:border-b-0 lg:border-r lg:px-5">
+        <aside className="border-b border-border bg-white/85 px-4 py-4 lg:min-h-screen lg:w-64 lg:border-b-0 lg:border-r lg:px-5 lg:py-5">
           <div className="flex items-center justify-between gap-4 lg:block">
             <Link className="flex items-center gap-2" href="/">
               <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
@@ -34,27 +34,27 @@ export function AppShell({
               </span>
             </Link>
             <Badge className="lg:mt-5" tone="info">
-              002b
+              002c
             </Badge>
           </div>
           <AppNav />
         </aside>
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="border-b border-border bg-white/70 px-4 py-4 backdrop-blur lg:px-8">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <header className="border-b border-border bg-white/70 px-4 py-5 backdrop-blur lg:px-8 lg:py-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div className="min-w-0">
                 <p className="text-sm font-medium text-muted-foreground">{eyebrow}</p>
-                <h1 className="text-xl font-semibold tracking-normal">{title}</h1>
+                <h1 className="mt-1 text-2xl font-semibold tracking-normal">{title}</h1>
                 {description ? (
                   <p className="mt-1 max-w-3xl text-sm text-muted-foreground">{description}</p>
                 ) : null}
               </div>
-              <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+              <div className="flex w-full shrink-0 flex-col gap-2 sm:w-auto sm:flex-row md:justify-end">
                 {actions ?? <Button disabled>Run scan unavailable</Button>}
               </div>
             </div>
           </header>
-          <main className="flex-1 px-4 py-6 lg:px-8">{children}</main>
+          <main className="flex-1 px-4 py-5 sm:py-6 lg:px-8 lg:py-8">{children}</main>
         </div>
       </div>
     </div>
