@@ -6,7 +6,7 @@ BugMonkey is an AI-assisted pre-launch QA scanner for solo developers, students,
 
 ## Status
 
-This repository is in foundation setup. The first implementation pass intentionally contains only documentation, monorepo placeholders, and tooling skeletons.
+This repository has the foundation setup plus the first static Next.js web UI shell in `apps/web`. Backend, database, auth, scanner, storage, and LLM work are not implemented yet.
 
 Demo link: TODO
 
@@ -51,19 +51,27 @@ Prerequisite:
 corepack enable
 ```
 
-Install dependencies after the real app packages exist:
+Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-Current placeholder checks:
+Run the web UI locally:
+
+```bash
+pnpm dev:web
+```
+
+Current checks:
 
 ```bash
 pnpm lint
 pnpm typecheck
 pnpm test
 ```
+
+`pnpm test` is still a placeholder until test coverage is added.
 
 ## Environment
 
@@ -78,7 +86,6 @@ REPORT_MODE=rule_based
 These commands are intentionally placeholders until the matching packages are created.
 
 ```bash
-pnpm dev:web
 pnpm dev:worker
 pnpm scan:demo
 ```

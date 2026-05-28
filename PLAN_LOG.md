@@ -21,3 +21,14 @@ Append-only work log. Never delete old entries.
 - Result: README roadmap links now use repo-relative Markdown links.
 - Known issues: none.
 - Next recommended step: continue with `002-web-ui-shell`.
+
+## 2026-05-28 - Initial web UI shell
+
+- Task attempted: implement Milestone 002a as a static Next.js App Router web shell only.
+- Files changed: added `apps/web` Next.js, Tailwind, ESLint, and TypeScript config; added static `/` and `/demo-report` pages; added shadcn-style local UI primitives, severity badge, app shell, demo data, and favicon; removed `apps/web/.gitkeep`; updated root scripts in `package.json`; updated `pnpm-lock.yaml`; updated `README.md` setup and script notes.
+- Commands run: `git status --short`, repo inspection commands, `node --version`, `pnpm --version`, `pnpm install`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm dev:web`, browser verification for `http://localhost:3000/` and `/demo-report`, `git diff --check`, `lsof -ti tcp:3000 | xargs kill`.
+- Tests/checks performed: `pnpm lint` passed after switching ESLint to a Next-compatible flat config; `pnpm typecheck` passed; `pnpm test` ran the documented placeholder; `git diff --check` passed.
+- Visual QA notes: verified `/` and `/demo-report` in the browser at desktop size and mobile width `390x844`; static pages rendered without obvious overlap; scan and export actions are disabled and do not claim real functionality; favicon 404 found during QA was fixed; final browser console check reported no errors.
+- Result: `apps/web` is now a real static Next.js UI shell with Tailwind and local shadcn-style primitives. No backend, database, auth, worker, scanner, storage, shared contracts, or LLM functionality was added.
+- Known issues: `pnpm test` is still a placeholder until test coverage is introduced.
+- Next recommended step: commit `feat(web): add initial Next.js UI shell`.
