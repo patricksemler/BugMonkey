@@ -145,4 +145,22 @@ supabase start
 supabase db reset
 ```
 
+Remote Supabase project setup should use the Supabase CLI only after confirming the target project:
+
+```bash
+supabase login
+supabase link --project-ref <project-ref>
+supabase db push
+```
+
+`supabase db push` applies committed migrations to the linked remote database. Do not run `supabase db reset` against a remote project.
+
+Local environment values belong in untracked env files:
+
+- Root `.env.local` can hold `DATABASE_URL` for tooling.
+- `apps/web/.env.local` may hold public browser-safe values: `NEXT_PUBLIC_SUPABASE_URL` and either `NEXT_PUBLIC_SUPABASE_ANON_KEY` or `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+- `apps/worker/.env.local` may hold future server-only values: `DATABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDENCE_BUCKET`.
+
+Never commit real Supabase URLs, keys, database passwords, or local Supabase CLI linkage files that expose project-specific secrets.
+
 The current static web build must continue to pass without Supabase environment variables.

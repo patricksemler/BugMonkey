@@ -92,3 +92,47 @@ Append-only work log. Never delete old entries.
 - Result: shared validation contracts and Drizzle schema were added, initial Supabase/Postgres tables and RLS policies were generated, and docs now describe the database, ownership, scanner evidence, and report payload foundations. No auth UI, Supabase client wiring, scanner behavior, storage uploads, LLM calls, or UI changes were added.
 - Secrets check: no real Supabase URLs, keys, service role secrets, database passwords, private screenshots, or real user data were added.
 - Known issues: `pnpm test` remains a placeholder until real test coverage is introduced.
+
+## 2026-05-28 - Supabase project configuration docs
+
+- Branch: `chore/configure-supabase-project`.
+- Task attempted: add safe local Supabase project configuration documentation and placeholder env examples without applying remote migrations.
+- Files changed: `.gitignore`, `.env.example`, `apps/web/.env.example`, `apps/worker/.env.example`, `README.md`, `docs/specs/database.md`, `docs/specs/security.md`, `docs/specs/deployment.md`, `PLAN_LOG.md`.
+- Commands run: `git switch main`, `git pull --ff-only origin main`, `git switch -c chore/configure-supabase-project`, repository inspection commands, `pnpm db:generate`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, `git diff --check`, tracked-file secret pattern scans.
+- Tests/checks performed: `pnpm db:generate` reported no schema changes; `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, and `git diff --check` passed. Tracked setup/docs files were scanned for Supabase URL/key/password patterns with no matches.
+- Remote migrations: not applied. `supabase login`, `supabase link`, and `supabase db push` were intentionally not run.
+- Result: safe Supabase local configuration docs and placeholder env examples were added without product behavior changes.
+- Secrets check: only placeholder env values were added; no real Supabase values should be committed.
+
+## 2026-05-28 - Local Supabase project link
+
+- Branch: `chore/configure-supabase-project`.
+- Task attempted: link the local Supabase CLI workspace to the real BugMonkey Supabase project without applying migrations or committing secrets.
+- Files changed: `.gitignore`.
+- Commands run: `pnpm dlx supabase projects list --output json`, `pnpm dlx supabase link --project-ref <redacted>`, `pnpm dlx supabase migration list`, `git diff --check`.
+- Tests/checks performed: Supabase CLI linked successfully; migration list completed as a read-only verification; `git diff --check` passed.
+- Remote migrations: not applied. `supabase db push` and `supabase db reset` were intentionally not run.
+- Result: local Supabase CLI metadata was created under `supabase/.temp/`, and `.gitignore` now excludes that local link metadata.
+- Secrets check: no project password, Supabase keys, database URL, or project-specific link metadata should be committed.
+
+## 2026-05-28 - Local Supabase env cleanup
+
+- Branch: `chore/configure-supabase-project`.
+- Task attempted: keep only local `.env.local` files needed for development and remove duplicate plain `.env` files from the workspace.
+- Files changed: `PLAN_LOG.md`.
+- Commands run: local env filename/variable-name checks, `pnpm dlx supabase migration list`, `git status --short --ignored`.
+- Tests/checks performed: local Supabase link metadata is present; read-only remote migration listing completed successfully; local `.env.local` files are ignored by Git.
+- Remote migrations: not applied. `supabase db push` and `supabase db reset` were intentionally not run.
+- Result: root, web, and worker `.env.local` files remain locally with restrictive permissions; duplicate plain `.env` files were removed.
+- Secrets check: no secret values were printed or committed.
+
+## 2026-05-28 - Remote Supabase migration apply
+
+- Branch: `chore/configure-supabase-project`.
+- Task attempted: apply the existing committed Supabase migration to the linked remote Supabase project after explicit approval.
+- Files changed: `PLAN_LOG.md`.
+- Commands run: preflight inspection commands, `pnpm dlx supabase migration list`, approved `pnpm dlx supabase db push`, read-only remote verification queries, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, `git diff --check`.
+- Tests/checks performed: remote migration list shows local migration `0000` matched to remote migration `0000`; read-only verification found 7/7 expected tables, 8/8 expected enums, RLS enabled on 7/7 tables, and policies present on 7/7 tables; `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, and `git diff --check` passed.
+- Remote migrations: applied. `0000_remarkable_quasimodo.sql` was pushed to the linked remote Supabase database.
+- Result: remote Supabase database now has the Milestone 003 schema, enums, indexes, foreign keys, and RLS policies.
+- Secrets check: no project password, Supabase keys, database URL, or project-specific link metadata were printed or committed.

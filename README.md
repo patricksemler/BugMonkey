@@ -95,12 +95,22 @@ Generate database migrations from the Drizzle schema:
 pnpm db:generate
 ```
 
-Optional local Supabase verification, when the Supabase CLI and Docker are available:
+Optional local Supabase verification, when the Supabase CLI and Docker are available, can reset the local Supabase database only:
 
 ```bash
 supabase start
 supabase db reset
 ```
+
+Remote Supabase project setup uses the Supabase CLI. Link the project and apply committed migrations only after confirming the target project:
+
+```bash
+supabase login
+supabase link --project-ref <project-ref>
+supabase db push
+```
+
+Do not run `supabase db reset` against a remote project.
 
 ## Vercel Web Deployment
 
@@ -112,13 +122,19 @@ The current web build does not require Supabase environment variables. Future au
 
 ## Environment
 
-Copy `.env.example` to `.env.local` when implementation begins. Rule-based mode is the default and must work without API keys.
+Copy `.env.example` to `.env.local` when implementation begins. Keep real values only in untracked local env files. Rule-based mode is the default and must work without API keys.
 
 ```bash
 REPORT_MODE=rule_based
 ```
 
-Optional Supabase placeholders are present for future milestones. Do not commit real project URLs, anon keys, service role keys, or database passwords.
+Optional Supabase placeholders are present for future milestones:
+
+- Root `.env.local`: shared local values such as `DATABASE_URL` for migration tooling.
+- `apps/web/.env.local`: public Supabase values only, such as `NEXT_PUBLIC_SUPABASE_URL` and either `NEXT_PUBLIC_SUPABASE_ANON_KEY` or `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+- `apps/worker/.env.local`: future server-only values such as `DATABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDENCE_BUCKET`.
+
+Do not commit real project URLs, anon or publishable keys, service role or secret keys, database passwords, private screenshots, or real user data. Service role and secret keys must never be exposed to browser code.
 
 ## Planned Commands
 
