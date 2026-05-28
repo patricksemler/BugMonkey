@@ -11,3 +11,13 @@ Append-only work log. Never delete old entries.
 - Result: foundation files created and ready for the initial commit.
 - Known issues: none for this foundation pass.
 - Next recommended step: commit `chore(repo): initialize project foundation`, then begin `002-web-ui-shell`.
+
+## 2026-05-28 - README link cleanup
+
+- Task attempted: remove absolute local links from `README.md`.
+- Files changed: `README.md`, `PLAN_LOG.md`.
+- Commands run: `sed -n '1,220p' README.md`, `git status --short`, `rg -n "/Users/user|Documents/Projects/BugMonkey" ...`, `git diff --check`, `pnpm lint`, `pnpm typecheck`, `pnpm test`.
+- Tests/checks performed: absolute local path scan found no remaining matches. `git diff --check`, `pnpm lint`, `pnpm typecheck`, and `pnpm test` passed.
+- Result: README roadmap links now use repo-relative Markdown links.
+- Known issues: none.
+- Next recommended step: continue with `002-web-ui-shell`.

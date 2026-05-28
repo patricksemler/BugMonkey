@@ -85,11 +85,10 @@ pnpm scan:demo
 
 ## Roadmap
 
-See [PLAN.md](/Users/user/Documents/Projects/BugMonkey/PLAN.md) and [docs/plans/000-roadmap.md](/Users/user/Documents/Projects/BugMonkey/docs/plans/000-roadmap.md).
+See [PLAN.md](PLAN.md) and [docs/plans/000-roadmap.md](docs/plans/000-roadmap.md).
 
 ## Limitations And Safety
 
 - Hosted scans must block localhost and private network targets unless explicitly running in local development mode.
 - Scans must validate URLs, respect crawl limits, and avoid destructive actions.
 - AI providers may only summarize and explain captured evidence. They must not invent bugs.
-
