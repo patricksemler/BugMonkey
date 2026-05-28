@@ -4,11 +4,17 @@
   "private": true,
   "packageManager": "pnpm@9.15.4",
   "scripts": {
+    "db:generate": "drizzle-kit generate",
     "dev:web": "pnpm --filter @bugmonkey/web dev",
     "dev:worker": "node -e \"console.log('apps/worker is not implemented yet')\"",
     "scan:demo": "node -e \"console.log('demo scan is not implemented yet')\"",
     "lint": "pnpm --filter @bugmonkey/web lint",
-    "typecheck": "pnpm --filter @bugmonkey/web typecheck",
+    "typecheck": "pnpm --filter @bugmonkey/shared typecheck && pnpm --filter @bugmonkey/web typecheck",
     "test": "node -e \"console.log('tests are not configured yet')\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "drizzle-kit": "^0.31.10",
+    "typescript": "^5.7.2"
   }
 }
