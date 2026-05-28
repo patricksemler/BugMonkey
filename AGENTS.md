@@ -56,11 +56,21 @@ If a command is not implemented yet, document that in `PLAN_LOG.md` rather than 
 
 ## Git Rules
 
+- Do not implement milestones directly on `main`.
+- Each implementation milestone must use a dedicated branch.
+- Branch names must use the format `<type>/<short-description>`.
+- Allowed branch prefixes are `feature/`, `fix/`, `docs/`, `refactor/`, `test/`, `chore/`, and `ci/`.
+- Use kebab-case branch descriptions.
 - Use small Conventional Commits.
 - One logical change per commit.
 - Check `git status` and `git diff` before committing.
 - Run relevant checks before committing.
 - Update `PLAN_LOG.md` before committing.
+- Push the milestone branch after verification if a remote is configured.
+- Open a pull request into `main` if GitHub CLI is available and authenticated.
+- If GitHub CLI is unavailable, print the exact PR title, body, and command for the user to run.
+- Do not merge pull requests unless explicitly instructed.
+- Merge to `main` only after review approval and passing checks.
 
 Allowed commit types:
 
@@ -75,6 +85,19 @@ Allowed commit types:
 - `build`
 - `style`
 
+## Pull Request Rules
+
+Pull requests must include:
+
+- Summary.
+- Files changed.
+- Commands run.
+- Verification result.
+- Screenshots or manual QA notes for UI changes.
+- Confirmation that `PLAN_LOG.md` was updated.
+
+After a pull request is opened, a separate review pass or agent should inspect the diff before merge. The review should check scope control, UI quality, docs updates, tests/checks, and whether unrelated files changed.
+
 ## Definition Of Done
 
 - The feature or documentation change matches the active plan.
@@ -82,4 +105,3 @@ Allowed commit types:
 - Docs are updated when behavior or setup changes.
 - No secrets are introduced.
 - No unrelated changes are included.
-

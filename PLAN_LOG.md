@@ -32,3 +32,13 @@ Append-only work log. Never delete old entries.
 - Result: `apps/web` is now a real static Next.js UI shell with Tailwind and local shadcn-style primitives. No backend, database, auth, worker, scanner, storage, shared contracts, or LLM functionality was added.
 - Known issues: `pnpm test` is still a placeholder until test coverage is introduced.
 - Next recommended step: commit `feat(web): add initial Next.js UI shell`.
+
+## 2026-05-28 - Branch workflow rules
+
+- Task attempted: document required branch-based milestone workflow before Milestone 002b implementation.
+- Files changed: `AGENTS.md`, `CONTRIBUTING.md`, `.github/pull_request_template.md`, `PLAN_LOG.md`.
+- Commands run: `git status --short`, `git branch --show-current`, `git switch -c feature/static-dashboard-route-polish`, repository documentation inspection commands.
+- Tests/checks performed: pending for the full Milestone 002b session.
+- Result: branch naming, PR content, review, push, and no-self-merge rules documented for agents and contributors.
+- Known issues: no remote is currently configured, so branch push and PR creation may require user follow-up.
+- Next recommended step: commit `docs(workflow): require branch-based milestone work`, then implement Milestone 002b UI polish on `feature/static-dashboard-route-polish`.
