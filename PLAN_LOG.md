@@ -79,3 +79,16 @@ Append-only work log. Never delete old entries.
 - Result: GitHub Actions CI workflow added for pull requests into `main` and pushes to `main`; contributor CI notes added.
 - Known issues: `pnpm test` remains a placeholder until real test coverage is added.
 - PR URL: https://github.com/patricksemler/BugMonkey/pull/3
+
+## 2026-05-28 - Supabase database and shared schema foundation
+
+- Branch: `feature/supabase-shared-schema-foundation`.
+- Task attempted: implement Milestone 003 as a backend foundation only, choosing Supabase Postgres/Auth/future Storage with Drizzle ORM, Drizzle Kit migrations, and shared Zod contracts.
+- Files changed: root package scripts/dependencies, `pnpm-lock.yaml`, `drizzle.config.ts`, `supabase/migrations`, `packages/shared`, `.env.example`, `README.md`, `PLAN.md`, `CHANGELOG.md`, `docs/plans/003-database-auth-storage.md`, `docs/specs/database.md`, `docs/specs/data-model.md`, `docs/specs/security.md`, `docs/specs/scanner.md`, `docs/specs/report-engine.md`, `docs/specs/deployment.md`, `PLAN_LOG.md`.
+- Dependencies added: root dev dependencies `drizzle-kit`, `typescript`, and `@types/node`; shared package dependencies `drizzle-orm` and `zod`.
+- Commands run: `git switch main`, `git pull --ff-only origin main`, `git switch -c feature/supabase-shared-schema-foundation`, `pnpm install`, `pnpm db:generate`, `pnpm --filter @bugmonkey/shared typecheck`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, `git diff --check`.
+- Tests/checks performed: `pnpm db:generate` reported no schema changes after the initial migration was generated; `pnpm --filter @bugmonkey/shared typecheck`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, and `git diff --check` passed.
+- Supabase verification: local Supabase CLI/Docker migration application was not run; it remains optional for this milestone.
+- Result: shared validation contracts and Drizzle schema were added, initial Supabase/Postgres tables and RLS policies were generated, and docs now describe the database, ownership, scanner evidence, and report payload foundations. No auth UI, Supabase client wiring, scanner behavior, storage uploads, LLM calls, or UI changes were added.
+- Secrets check: no real Supabase URLs, keys, service role secrets, database passwords, private screenshots, or real user data were added.
+- Known issues: `pnpm test` remains a placeholder until real test coverage is introduced.

@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-Begin Milestone 003: database and shared schema foundation.
+Complete Milestone 003: Supabase database and shared schema foundation.
 
 ## Completed Milestones
 
@@ -12,15 +12,17 @@ Begin Milestone 003: database and shared schema foundation.
 - [x] 002c - Final static UI polish and Vercel readiness.
 - [x] Overall Milestone 002 - Web UI shell.
 
-## Next Active Milestone
+## Active Milestone
 
-Milestone 003 should establish the first backend-facing foundation without implementing scanner execution:
+Milestone 003 establishes the first backend-facing foundation without implementing scanner execution:
 
-- Choose the database/auth/storage direction needed for local development.
-- Define shared schema foundations in `packages/shared`.
+- Use Supabase Postgres, Supabase Auth, and future Supabase Storage as the backend direction.
+- Use Drizzle ORM and Drizzle Kit for the TypeScript-first database schema and SQL migrations.
+- Define shared Zod contract foundations in `packages/shared`.
 - Keep scanner logic out of `apps/web`.
 - Preserve rule-based reporting as the default.
 - Keep AI-enhanced behavior optional and unimplemented until the provider milestone.
+- Keep the current static web app buildable without Supabase environment variables.
 
 ## Non-Goals For The Next Milestone
 
@@ -33,9 +35,12 @@ Milestone 003 should establish the first backend-facing foundation without imple
 ## Verification Baseline
 
 ```bash
+pnpm db:generate
+pnpm --filter @bugmonkey/shared typecheck
 pnpm lint
 pnpm typecheck
 pnpm test
+pnpm --filter @bugmonkey/web build
 ```
 
 `pnpm test` remains a placeholder until test coverage is introduced.
