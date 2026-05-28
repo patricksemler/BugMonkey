@@ -68,3 +68,14 @@ Append-only work log. Never delete old entries.
 - Result: Milestone 002 docs are closed out and the static web UI is ready for Milestone 003 backend/database/shared-schema planning.
 - Known issues: `pnpm test` remains a placeholder until real test coverage is added.
 - Next recommended milestone: Milestone 003 - database/shared schema foundation.
+
+## 2026-05-28 - GitHub Actions CI
+
+- Branch: `chore/add-github-actions-ci`.
+- Task attempted: add GitHub Actions CI before Milestone 003 without adding deployment or product logic.
+- Files changed: `.github/workflows/ci.yml`, `CONTRIBUTING.md`, `PLAN_LOG.md`.
+- Commands run: `git switch main`, `git pull --ff-only origin main`, `git switch -c chore/add-github-actions-ci`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, `git diff --check`, `git status --short`, `git commit -m "ci(github): add pull request checks"`, `git push -u origin chore/add-github-actions-ci`, `gh pr create`.
+- Tests/checks performed: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, and `git diff --check` passed.
+- Result: GitHub Actions CI workflow added for pull requests into `main` and pushes to `main`; contributor CI notes added.
+- Known issues: `pnpm test` remains a placeholder until real test coverage is added.
+- PR URL: https://github.com/patricksemler/BugMonkey/pull/3

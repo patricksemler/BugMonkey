@@ -69,6 +69,18 @@ Allowed types:
 5. Update `PLAN_LOG.md`.
 6. Commit one logical change.
 
+## Continuous Integration
+
+GitHub Actions runs CI on pull requests into `main` and pushes to `main`.
+Before opening a pull request, run the same checks locally:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm --filter @bugmonkey/web build
+```
+
 ## Pull Request Expectations
 
 - Push the milestone branch after verification if a remote is configured.
