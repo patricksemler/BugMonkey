@@ -25,7 +25,7 @@ export function AppNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="mt-4 grid grid-cols-2 gap-1 lg:grid-cols-1">
+    <nav className="mt-4 grid grid-cols-2 gap-1.5 lg:grid-cols-1">
       {navItems.map((item) => {
         const isActive =
           pathname === item.href ||
@@ -37,7 +37,7 @@ export function AppNav() {
             className={cn(
               "flex min-h-10 items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
               isActive
-                ? "bg-slate-100 text-foreground"
+                ? "bg-slate-100 text-foreground shadow-sm"
                 : "text-muted-foreground hover:bg-slate-100 hover:text-foreground",
             )}
             href={item.href}

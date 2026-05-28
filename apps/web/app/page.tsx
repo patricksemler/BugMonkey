@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { AppShell } from "@/components/app-shell";
+import { MetricCard } from "@/components/metric-card";
 import { SeverityBadge } from "@/components/severity-badge";
 import { StatusState } from "@/components/status-state";
 import { Badge } from "@/components/ui/badge";
@@ -45,10 +46,7 @@ export default function HomePage() {
                   Static workspace routes for reviewing launch-readiness signals.
                 </CardDescription>
               </div>
-              <Link
-                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-soft transition-colors hover:bg-slate-800 sm:w-auto"
-                href="/demo-report"
-              >
+              <Link className="inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-soft transition-colors hover:bg-slate-800 sm:w-auto" href="/demo-report">
                 Open demo report
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
@@ -121,7 +119,7 @@ export default function HomePage() {
           <Card>
             <CardHeader>
               <CardTitle>Issue preview</CardTitle>
-              <CardDescription>Representative issue rows without live scanner claims.</CardDescription>
+              <CardDescription>Representative issue rows without scanner claims.</CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
@@ -156,25 +154,5 @@ export default function HomePage() {
         </section>
       </div>
     </AppShell>
-  );
-}
-
-function MetricCard({
-  label,
-  value,
-  detail,
-}: {
-  label: string;
-  value: string;
-  detail: string;
-}) {
-  return (
-    <Card>
-      <CardContent className="p-5">
-        <p className="text-sm text-muted-foreground">{label}</p>
-        <p className="mt-2 text-2xl font-semibold tracking-normal">{value}</p>
-        <p className="mt-1 text-sm text-muted-foreground">{detail}</p>
-      </CardContent>
-    </Card>
   );
 }

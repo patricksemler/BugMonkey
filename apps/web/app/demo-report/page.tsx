@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FileJson, FileText } from "lucide-react";
 
 import { AppShell } from "@/components/app-shell";
+import { MetricCard } from "@/components/metric-card";
 import { SeverityBadge } from "@/components/severity-badge";
 import { StatusState } from "@/components/status-state";
 import { Badge } from "@/components/ui/badge";
@@ -26,9 +27,9 @@ export default function DemoReportPage() {
     >
       <div className="space-y-6">
         <section className="grid gap-4 md:grid-cols-3">
-          <MetricCard label="Launch score" value={`${reportSummary.score}%`} />
-          <MetricCard label="Pages represented" value={reportSummary.scannedPages.toString()} />
-          <MetricCard label="Issues represented" value={reportSummary.issueCount.toString()} />
+          <MetricCard label="Launch score" value={`${reportSummary.score}%`} valueClassName="text-3xl" />
+          <MetricCard label="Pages represented" value={reportSummary.scannedPages.toString()} valueClassName="text-3xl" />
+          <MetricCard label="Issues represented" value={reportSummary.issueCount.toString()} valueClassName="text-3xl" />
         </section>
 
         <Card>
@@ -96,16 +97,5 @@ export default function DemoReportPage() {
         </section>
       </div>
     </AppShell>
-  );
-}
-
-function MetricCard({ label, value }: { label: string; value: string }) {
-  return (
-    <Card>
-      <CardContent className="p-5">
-        <p className="text-sm text-muted-foreground">{label}</p>
-        <p className="mt-2 text-3xl font-semibold">{value}</p>
-      </CardContent>
-    </Card>
   );
 }

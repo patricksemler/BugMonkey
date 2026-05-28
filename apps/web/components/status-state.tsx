@@ -27,12 +27,14 @@ export function StatusState({
   action,
   body,
   className,
+  density = "compact",
   title,
   variant,
 }: {
   action?: ReactNode;
   body: string;
   className?: string;
+  density?: "compact" | "page";
   title?: string;
   variant: StatusStateVariant;
 }) {
@@ -40,12 +42,25 @@ export function StatusState({
   const Icon = config.icon;
 
   return (
-    <div className={cn("flex gap-3 rounded-md border bg-white p-3", className)}>
-      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-slate-100">
+    <div
+      className={cn(
+        "flex gap-3 rounded-md border bg-white",
+        density === "page" ? "p-5 sm:p-6" : "p-3",
+        className,
+      )}
+    >
+      <span
+        className={cn(
+          "mt-0.5 flex shrink-0 items-center justify-center rounded-md bg-slate-100",
+          density === "page" ? "h-10 w-10" : "h-9 w-9",
+        )}
+      >
         <Icon className={cn("h-4 w-4", config.iconClassName)} aria-hidden="true" />
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium">{title ?? config.label}</p>
+        <p className={cn("font-medium", density === "page" ? "text-base" : "text-sm")}>
+          {title ?? config.label}
+        </p>
         <p className="mt-1 text-sm text-muted-foreground">{body}</p>
         {action ? <div className="mt-3">{action}</div> : null}
       </div>

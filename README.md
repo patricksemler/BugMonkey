@@ -6,7 +6,7 @@ BugMonkey is an AI-assisted pre-launch QA scanner for solo developers, students,
 
 ## Status
 
-This repository has the foundation setup plus the first static Next.js web UI shell in `apps/web`. Backend, database, auth, scanner, storage, and LLM work are not implemented yet.
+This repository has the foundation setup plus a polished static Next.js web UI shell in `apps/web`. Backend, database, auth, scanner, storage, and LLM work are not implemented yet.
 
 Demo link: TODO
 
@@ -63,6 +63,17 @@ Run the web UI locally:
 pnpm dev:web
 ```
 
+Static demo routes:
+
+```text
+/
+/projects
+/scans
+/settings
+/demo-report
+/demo-report/issues/BM-DEMO-001
+```
+
 Current checks:
 
 ```bash
@@ -72,6 +83,12 @@ pnpm test
 ```
 
 `pnpm test` is still a placeholder until test coverage is added.
+
+## Vercel Web Deployment
+
+Create the Vercel project with Root Directory set to `apps/web`. Let Vercel auto-detect the Next.js framework settings from that app directory.
+
+The Playwright worker/scanner is separate and is not implemented yet. Do not run browser scanning inside normal Vercel UI routes.
 
 ## Environment
 

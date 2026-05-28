@@ -50,9 +50,9 @@ export default function SettingsPage() {
         </Card>
 
         <section className="grid gap-4 md:grid-cols-3">
-          <StatusState body="Account, team, and billing settings are outside this milestone." title="Empty settings" variant="empty" />
-          <StatusState body="Future settings fetches can use this loading state." title="Loading settings" variant="loading" />
-          <StatusState body="Future save failures should explain what did not persist." title="Error state" variant="error" />
+          <StatusState body="Account, team, and billing settings are outside this milestone." density="page" title="Empty settings" variant="empty" />
+          <StatusState body="Future settings fetches can use this loading state." density="page" title="Loading settings" variant="loading" />
+          <StatusState body="Future save failures should explain what did not persist." density="page" title="Error state" variant="error" />
         </section>
       </div>
     </AppShell>

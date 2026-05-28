@@ -74,6 +74,7 @@ export default function ProjectsPage() {
         <div className="grid gap-4 md:grid-cols-2">
           <StatusState
             body="A real empty state will appear here before a user creates their first project."
+            density="page"
             title="Empty projects"
             variant="empty"
           />
@@ -84,6 +85,7 @@ export default function ProjectsPage() {
               </Link>
             }
             body="Use the demo report to inspect the intended issue-review flow."
+            density="page"
             title="Static preview path"
             variant="loading"
           />
