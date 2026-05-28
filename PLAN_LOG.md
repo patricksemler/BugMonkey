@@ -32,3 +32,24 @@ Append-only work log. Never delete old entries.
 - Result: `apps/web` is now a real static Next.js UI shell with Tailwind and local shadcn-style primitives. No backend, database, auth, worker, scanner, storage, shared contracts, or LLM functionality was added.
 - Known issues: `pnpm test` is still a placeholder until test coverage is introduced.
 - Next recommended step: commit `feat(web): add initial Next.js UI shell`.
+
+## 2026-05-28 - Branch workflow rules
+
+- Task attempted: document required branch-based milestone workflow before Milestone 002b implementation.
+- Files changed: `AGENTS.md`, `CONTRIBUTING.md`, `.github/pull_request_template.md`, `PLAN_LOG.md`.
+- Commands run: `git status --short`, `git branch --show-current`, `git switch -c feature/static-dashboard-route-polish`, repository documentation inspection commands.
+- Tests/checks performed: pending for the full Milestone 002b session.
+- Result: branch naming, PR content, review, push, and no-self-merge rules documented for agents and contributors.
+- Known issues: no remote is currently configured, so branch push and PR creation may require user follow-up.
+- Next recommended step: commit `docs(workflow): require branch-based milestone work`, then implement Milestone 002b UI polish on `feature/static-dashboard-route-polish`.
+
+## 2026-05-28 - Static dashboard route polish
+
+- Task attempted: implement Milestone 002b static UI route polish on `feature/static-dashboard-route-polish`.
+- Files changed: `apps/web/components/app-shell.tsx`, `apps/web/components/app-nav.tsx`, `apps/web/components/status-state.tsx`, `apps/web/app/page.tsx`, `apps/web/app/demo-report/page.tsx`, `apps/web/app/projects/page.tsx`, `apps/web/app/scans/page.tsx`, `apps/web/app/settings/page.tsx`, `apps/web/app/demo-report/issues/[issueId]/page.tsx`, `apps/web/lib/demo-data.ts`, `PLAN_LOG.md`.
+- Commands run: `git status --short`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm dev:web`, `rg -n "href=\\{?['\\\"]#|href: ['\\\"]#" apps/web`, browser verification for `/`, `/demo-report`, `/demo-report/issues/BM-DEMO-001`, `/demo-report/issues/unknown`, `/projects`, `/scans`, and `/settings`, mobile viewport screenshots for `/`, `/projects`, and `/demo-report/issues/unknown`, browser console checks, `git diff --check`, `lsof -ti tcp:3000 | xargs kill`.
+- Tests/checks performed: `pnpm lint` passed; `pnpm typecheck` passed; `pnpm test` ran the documented placeholder; `git diff --check` passed; nav link scan found no `#` hrefs in `apps/web`.
+- Visual QA notes: verified desktop route rendering for all 002b routes; verified mobile layout at `390x844` for overview, projects, and unknown issue fallback; no obvious overlap, clipped controls, or unreadable table content; disabled scan/export/settings actions remained disabled; final browser console check reported no errors.
+- Result: static dashboard route polish completed with mock-only data and graceful known/unknown issue detail states. No auth, database, worker, scanner, storage, shared contracts, or LLM logic was added.
+- Known issues: no remote is currently configured, so branch push and PR creation may require user follow-up.
+- Next recommended step: commit `feat(web): add static dashboard route polish`, then push/open a PR if a remote is configured.

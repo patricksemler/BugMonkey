@@ -10,6 +10,25 @@ export type DemoIssue = {
   status: "Open" | "Needs review" | "Ready to export";
 };
 
+export type DemoProject = {
+  id: string;
+  name: string;
+  targetUrl: string;
+  status: "Static preview" | "Not connected";
+  lastActivity: string;
+  issueCount: number;
+};
+
+export type DemoScan = {
+  id: string;
+  name: string;
+  targetUrl: string;
+  status: "Static preview" | "Queued placeholder" | "Unavailable";
+  pages: number;
+  issues: number;
+  mode: "rule_based";
+};
+
 export const reportSummary = {
   appName: "Launch Readiness Demo",
   targetUrl: "https://demo.example.com",
@@ -76,6 +95,10 @@ export const demoIssues: DemoIssue[] = [
   },
 ];
 
+export function getDemoIssue(issueId: string) {
+  return demoIssues.find((issue) => issue.id === issueId);
+}
+
 export const recentRuns = [
   {
     name: "Demo checkout flow",
@@ -94,5 +117,80 @@ export const recentRuns = [
     status: "Static preview",
     pages: "3 pages",
     issues: "2 issues",
+  },
+];
+
+export const demoProjects: DemoProject[] = [
+  {
+    id: "project-demo-store",
+    name: "Demo storefront",
+    targetUrl: "https://demo.example.com",
+    status: "Static preview",
+    lastActivity: "Demo report available",
+    issueCount: 6,
+  },
+  {
+    id: "project-marketing",
+    name: "Marketing site",
+    targetUrl: "https://marketing.example.com",
+    status: "Not connected",
+    lastActivity: "No production scan yet",
+    issueCount: 0,
+  },
+  {
+    id: "project-dashboard",
+    name: "Admin dashboard",
+    targetUrl: "https://dashboard.example.com",
+    status: "Static preview",
+    lastActivity: "Mobile layout sample",
+    issueCount: 2,
+  },
+];
+
+export const demoScans: DemoScan[] = [
+  {
+    id: "scan-demo-checkout",
+    name: "Demo checkout flow",
+    targetUrl: "https://demo.example.com",
+    status: "Static preview",
+    pages: 7,
+    issues: 6,
+    mode: "rule_based",
+  },
+  {
+    id: "scan-marketing",
+    name: "Marketing pages",
+    targetUrl: "https://marketing.example.com",
+    status: "Unavailable",
+    pages: 0,
+    issues: 0,
+    mode: "rule_based",
+  },
+  {
+    id: "scan-mobile-layout",
+    name: "Mobile layout pass",
+    targetUrl: "https://dashboard.example.com",
+    status: "Queued placeholder",
+    pages: 3,
+    issues: 2,
+    mode: "rule_based",
+  },
+];
+
+export const settingsSections = [
+  {
+    title: "Report mode",
+    value: "Rule-based default",
+    description: "LLM-enhanced reporting remains unconfigured and outside this milestone.",
+  },
+  {
+    title: "Hosted scan safety",
+    value: "Private networks blocked",
+    description: "Scanner enforcement will be implemented in the worker milestone.",
+  },
+  {
+    title: "Evidence storage",
+    value: "Not connected",
+    description: "Storage provider selection is deferred to a later milestone.",
   },
 ];
