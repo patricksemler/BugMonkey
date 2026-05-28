@@ -16,6 +16,12 @@ test-results/
 .env
 .env.*
 !.env.example
+apps/*/.env
+apps/*/.env.*
+!apps/*/.env.example
+packages/*/.env
+packages/*/.env.*
+!packages/*/.env.example
 
 # logs
 *.log
@@ -31,4 +37,3 @@ Thumbs.db
 # editors
 .idea/
 .vscode/
-

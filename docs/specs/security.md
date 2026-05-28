@@ -22,6 +22,8 @@ BugMonkey scans untrusted URLs. Security and abuse prevention are core product r
 - Use Supabase Auth user IDs as app data owners without duplicating Auth users in public tables.
 - Enable Row Level Security on public app tables and scope user-owned data through `auth.uid()`.
 - Keep service role credentials server-only for future trusted worker or backend operations.
+- Keep Supabase secret keys and database URLs out of browser code, docs, commit messages, PR bodies, and logs.
+- Only public Supabase URL and anon/publishable key values may be used by future browser code.
 - Use private Supabase Storage buckets, storage RLS, and signed URLs for future evidence access.
 
 ## AI Safety

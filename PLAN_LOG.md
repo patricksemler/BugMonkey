@@ -92,3 +92,14 @@ Append-only work log. Never delete old entries.
 - Result: shared validation contracts and Drizzle schema were added, initial Supabase/Postgres tables and RLS policies were generated, and docs now describe the database, ownership, scanner evidence, and report payload foundations. No auth UI, Supabase client wiring, scanner behavior, storage uploads, LLM calls, or UI changes were added.
 - Secrets check: no real Supabase URLs, keys, service role secrets, database passwords, private screenshots, or real user data were added.
 - Known issues: `pnpm test` remains a placeholder until real test coverage is introduced.
+
+## 2026-05-28 - Supabase project configuration docs
+
+- Branch: `chore/configure-supabase-project`.
+- Task attempted: add safe local Supabase project configuration documentation and placeholder env examples without applying remote migrations.
+- Files changed: `.gitignore`, `.env.example`, `apps/web/.env.example`, `apps/worker/.env.example`, `README.md`, `docs/specs/database.md`, `docs/specs/security.md`, `docs/specs/deployment.md`, `PLAN_LOG.md`.
+- Commands run: `git switch main`, `git pull --ff-only origin main`, `git switch -c chore/configure-supabase-project`, repository inspection commands, `pnpm db:generate`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, `git diff --check`, tracked-file secret pattern scans.
+- Tests/checks performed: `pnpm db:generate` reported no schema changes; `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, and `git diff --check` passed. Tracked setup/docs files were scanned for Supabase URL/key/password patterns with no matches.
+- Remote migrations: not applied. `supabase login`, `supabase link`, and `supabase db push` were intentionally not run.
+- Result: safe Supabase local configuration docs and placeholder env examples were added without product behavior changes.
+- Secrets check: only placeholder env values were added; no real Supabase values should be committed.
