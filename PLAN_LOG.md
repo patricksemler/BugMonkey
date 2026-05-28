@@ -125,3 +125,14 @@ Append-only work log. Never delete old entries.
 - Remote migrations: not applied. `supabase db push` and `supabase db reset` were intentionally not run.
 - Result: root, web, and worker `.env.local` files remain locally with restrictive permissions; duplicate plain `.env` files were removed.
 - Secrets check: no secret values were printed or committed.
+
+## 2026-05-28 - Remote Supabase migration apply
+
+- Branch: `chore/configure-supabase-project`.
+- Task attempted: apply the existing committed Supabase migration to the linked remote Supabase project after explicit approval.
+- Files changed: `PLAN_LOG.md`.
+- Commands run: preflight inspection commands, `pnpm dlx supabase migration list`, approved `pnpm dlx supabase db push`, read-only remote verification queries, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, `git diff --check`.
+- Tests/checks performed: remote migration list shows local migration `0000` matched to remote migration `0000`; read-only verification found 7/7 expected tables, 8/8 expected enums, RLS enabled on 7/7 tables, and policies present on 7/7 tables; `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm --filter @bugmonkey/web build`, and `git diff --check` passed.
+- Remote migrations: applied. `0000_remarkable_quasimodo.sql` was pushed to the linked remote Supabase database.
+- Result: remote Supabase database now has the Milestone 003 schema, enums, indexes, foreign keys, and RLS policies.
+- Secrets check: no project password, Supabase keys, database URL, or project-specific link metadata were printed or committed.
