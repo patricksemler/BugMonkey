@@ -114,3 +114,14 @@ Append-only work log. Never delete old entries.
 - Remote migrations: not applied. `supabase db push` and `supabase db reset` were intentionally not run.
 - Result: local Supabase CLI metadata was created under `supabase/.temp/`, and `.gitignore` now excludes that local link metadata.
 - Secrets check: no project password, Supabase keys, database URL, or project-specific link metadata should be committed.
+
+## 2026-05-28 - Local Supabase env cleanup
+
+- Branch: `chore/configure-supabase-project`.
+- Task attempted: keep only local `.env.local` files needed for development and remove duplicate plain `.env` files from the workspace.
+- Files changed: `PLAN_LOG.md`.
+- Commands run: local env filename/variable-name checks, `pnpm dlx supabase migration list`, `git status --short --ignored`.
+- Tests/checks performed: local Supabase link metadata is present; read-only remote migration listing completed successfully; local `.env.local` files are ignored by Git.
+- Remote migrations: not applied. `supabase db push` and `supabase db reset` were intentionally not run.
+- Result: root, web, and worker `.env.local` files remain locally with restrictive permissions; duplicate plain `.env` files were removed.
+- Secrets check: no secret values were printed or committed.
